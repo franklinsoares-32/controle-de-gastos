@@ -165,10 +165,7 @@ SCOPES = [
 def conectar_sheets():
     """Conecta ao Google Sheets usando as credenciais do secrets."""
     try:
-        import os
-import json
-
-creds_dict = json.loads(os.environ["gcp_service_account"])
+        creds_dict = dict(st.secrets["gcp_service_account"])
         creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
         client = gspread.authorize(creds)
         return client
